@@ -1,12 +1,11 @@
 pipeline {
-
-    agent { label 'my_slave' }
+    agent any
 
     stages {
 
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/discover-devops/python-docker-ci.git'
+                git branch: 'main', url: 'https://github.com/jagrutiwandhare-code/python-docker-ci.git'
             }
         }
 
@@ -31,5 +30,14 @@ pipeline {
             }
         }
 
+    }
+
+    post {
+        success {
+            echo 'Application deployed successfully 🚀'
+        }
+        failure {
+            echo 'Build failed ❌'
+        }
     }
 }
